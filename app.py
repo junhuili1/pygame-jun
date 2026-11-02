@@ -1,15 +1,22 @@
 import pygame
-import PIL
+from PIL import Image
 
 playlist = [
     {
         "name": "Annoying Alarm",
-        "file": 'CLOCK.ogg'
+        "file": 'CLOCK.ogg',
+        "image": 'alarm.png'
     },
-    {"name": "Annoying Slurp", "file": 'hottea.ogg'},
+    {"name": "Annoying Slurp", "file": 'hottea.ogg', "image": 'slurp.png'},
     {
         "name": "Metal Squeak",
-        "file": 'metalsqueak.mp3'
+        "file": 'metalsqueak.mp3',
+        "image": 'squeak.png'
+    },
+    {
+        "name": "Aura Farmer",
+        "file": 'Aura Farmer.mp3',
+        "image": 'Aura Farmer.png'
     }
 ]
 
@@ -26,6 +33,8 @@ for i in range(len(playlist)):
     if choice in playlist[i]["name"]:
         pygame.mixer.music.load(playlist[i]["file"])
         pygame.mixer.music.play(1)
+        im = Image.open(playlist[i]["image"])
+        im.show()
         found = True
         song = i
 if found == False:
@@ -43,6 +52,8 @@ while True:
             song = 0
         pygame.mixer.music.load(playlist[song]["file"])
         pygame.mixer.music.play(1)
+        im = Image.open(playlist[song]["image"])
+        im.show()
     else:
         pygame.mixer.music.stop()
         break
